@@ -96,7 +96,7 @@ scatter_log_price_property_type <- ggplot(
 scatter_log_price_review_scores_rating <- ggplot(
   df,
   aes(x=review_scores_rating, y=log_price)
-  ) + geom_point(size=1, shape=10) + xlab('Ціна') + ylab('Рейтинг') +
+  ) + geom_point(size=1, shape=10) + xlab('Рейтинг') + ylab('Ціна') +
   ggtitle(
     sprintf(
       'Залежність ціни від рейтингу. R = %.3f',
@@ -115,33 +115,58 @@ scatter_review_scores_rating_room_type <- ggplot(
     )
   )
 
-scatter_review_scores_rating_host_has_profile_pic <- ggplot(
+# scatter_review_scores_rating_host_has_profile_pic <- ggplot(
+#   df,
+#   aes(
+#     x=review_scores_rating, 
+#     y=host_has_profile_pic
+#   )
+# ) + geom_point(
+#       size=1,
+#       shape=10,
+#     ) + xlab('Рейтинг') + ylab('Наявність фото') +
+#   ggtitle(
+#     sprintf(
+#       'Залежність рейтингу від наявності фото. R = %.3f',
+#       corr_review_scores_ratings_host_has_profile_pic
+#     )
+#   )
+
+#hist_review_scores_rating_host_has_profile_pic_identity_verified <- ggplot(
+summary(df$host_has_profile_pic)
+annotations = data.frame(
+  x = 
+  y = 
+  label = summary(df$host_has_profile_pic)
+)
+ggplot(
   df,
   aes(
-    x=review_scores_rating, 
-    y=host_has_profile_pic
+    x=host_has_profile_pic,
+    fill=as.factor(host_has_profile_pic)
   )
-) + geom_point(
-      size=1,
-      shape=10,
-    ) + xlab('Рейтинг') + ylab('Наявність фото') +
-  ggtitle(
-    sprintf(
-      'Залежність рейтингу від наявності фото. R = %.3f',
-      corr_review_scores_ratings_host_has_profile_pic
-    )
+) + geom_histogram(
+  alpha=0.7,
+  position='identity',
+  stat='count'
+) + geom_text(
+  aes(
+    x=1,
+    y=3000,
+    label='a'
   )
+)
 
-scatter_review_scores_rating_host_identity_verified <- ggplot(
-  df,
-  aes(x=review_scores_rating, y=host_identity_verified)
-) + geom_point(size=1, shape=10) + xlab('Рейтинг') + ylab('Наявність верифікації') +
-  ggtitle(
-    sprintf(
-      'Залежність рейтингу від наявності верифікації. R = %.3f',
-      corr_review_scores_ratings_host_identity_verified
-    )
-  )
+# scatter_review_scores_rating_host_identity_verified <- ggplot(
+#   df,
+#   aes(x=review_scores_rating, y=host_identity_verified)
+# ) + geom_point(size=1, shape=10) + xlab('Рейтинг') + ylab('Наявність верифікації') +
+#   ggtitle(
+#     sprintf(
+#       'Залежність рейтингу від наявності верифікації. R = %.3f',
+#       corr_review_scores_ratings_host_identity_verified
+#     )
+#   )
 
 # Map plots
 
