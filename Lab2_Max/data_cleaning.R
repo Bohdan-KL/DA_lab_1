@@ -95,10 +95,10 @@ new_shape <- dim(df)
 
 # Density plots
 
-densityplot(df$bathrooms)
-densityplot(df$host_has_profile_pic)
-densityplot(df$host_identity_verified)
-densityplot(df$host_response_rate)
-densityplot(df$review_scores_rating)
-densityplot(df$bedrooms)
-densityplot(df$beds)
+# densityplot(df$bathrooms)
+# densityplot(df$host_has_profile_pic)
+# densityplot(df$host_identity_verified)
+# densityplot(df$host_response_rate)
+# densityplot(df$review_scores_rating)
+# densityplot(df$bedrooms)
+# densityplot(df$beds)
