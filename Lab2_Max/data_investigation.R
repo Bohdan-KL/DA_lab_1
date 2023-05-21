@@ -3,7 +3,8 @@ packages <- c(
   'DescTools',
   'coin',
   'boot',
-  'lmtest'
+  'lmtest',
+  'aod'
 )
 
 for(package in packages){
@@ -286,3 +287,18 @@ result$p.value
 
 # --- Тест Вальда ---
 
+# Маємо таку модель: ціна = w1 * тип кімнати + w2 * кількість ванних кімнат +
+#                           + w3 * кількість спальних кімнат + кількість ліжок
+model <- lm(log_price ~ property_type + bathrooms + bedrooms + beds, data = df)
+summary(model)
+
+# H0: деякі або всі предиктори рівні нулю.
+# H1: жоден або не всі змінні предиктори рівні нулю
+
+for (i in 1:4) {
+  print(wald.test(Sigma = vcov(model), b = coef(model), Terms = i))
+}
+
+# Із тесту Вальда маємо p-value << 0 для всіх змінних предикторів,
+# оскільки воно менше за рівень значимості(0.05), то ми можемо відхилити
+# нульову гіпотезу про рівність регресорів нулю.
